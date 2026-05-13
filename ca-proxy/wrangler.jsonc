@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ca-proxy",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-05-13",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "vars": {
+    // The published Google Sheet ID and gid that mirrors the CA spreadsheet.
+    // Replace SHEET_ID with the actual published-sheet ID once available.
+    "SHEET_ID": "REPLACE_WITH_PUBLISHED_SHEET_ID",
+    "SHEET_GID": "0"
+  },
+  // KV namespace bound as `CA_CACHE` — caches /fcs (sheet) and /fc/:id (Lodestone) results.
+  // Provision with: wrangler kv:namespace create CA_CACHE
+  "kv_namespaces": [
+    {
+      "binding": "CA_CACHE",
+      "id": "REPLACE_WITH_KV_NAMESPACE_ID"
+    }
+  ]
+}
