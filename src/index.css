@@ -1,11 +1,284 @@
-/* Placeholder — design tokens and global styles land in Milestone 2. */
+/* ============================================================
+   Cactuar Alliance — Design Tokens
+   Aesthetic: "Cactuar-mascot playful"
+   Palette: desert sage / sun-warmed sand / cactus deep green / pricklypear pink
+   ============================================================ */
+
 :root {
+  /* -------- Palette -------- */
+  --c-sage-50: #f1f6f1;
+  --c-sage-100: #dae9dd;
+  --c-sage-200: #b9d4c0;
+  --c-sage-300: #8fb996; /* primary */
+  --c-sage-400: #6fa079;
+  --c-sage-500: #527d5e;
+  --c-sage-600: #3d6b5c; /* deep cactus */
+  --c-sage-700: #2e5247;
+  --c-sage-800: #213b34;
+  --c-sage-900: #142420;
+
+  --c-sand-50: #fdf9ef;
+  --c-sand-100: #faf1d9;
+  --c-sand-200: #f4e4c1; /* surface */
+  --c-sand-300: #ebd29a;
+  --c-sand-400: #dcb869;
+  --c-sand-500: #c79b3f;
+
+  --c-pink-300: #f0a5b8;
+  --c-pink-400: #e88aa3;
+  --c-pink-500: #d9748f; /* primary action */
+  --c-pink-600: #b85770;
+  --c-pink-700: #8e4055;
+
+  --c-sky-200: #cfe6ee;
+  --c-sky-300: #a8d5e2; /* link */
+  --c-sky-500: #5fa9bd;
+  --c-sky-700: #2f6d80;
+
+  --c-ink-900: #2a3530; /* body text */
+  --c-ink-700: #455048;
+  --c-ink-500: #6e7a72;
+  --c-ink-300: #a4ada5;
+
+  /* -------- Semantic aliases -------- */
+  --surface: var(--c-sand-100);
+  --surface-raised: #ffffff;
+  --surface-sunk: var(--c-sand-200);
+  --surface-frame: var(--c-sage-700);
+
+  --bg-page: var(--c-sand-50);
+
+  --text-strong: var(--c-ink-900);
+  --text-body: var(--c-ink-700);
+  --text-muted: var(--c-ink-500);
+  --text-on-dark: var(--c-sand-100);
+  --text-on-action: #ffffff;
+
+  --action: var(--c-pink-500);
+  --action-hover: var(--c-pink-600);
+  --action-active: var(--c-pink-700);
+
+  --accent: var(--c-sage-600);
+  --accent-soft: var(--c-sage-200);
+
+  --link: var(--c-sky-700);
+  --link-hover: var(--c-pink-600);
+
+  --border-soft: var(--c-sage-100);
+  --border-strong: var(--c-sage-300);
+
+  /* -------- Type scale -------- */
+  --font-display: 'Fredoka', 'Comic Sans MS', system-ui, sans-serif;
+  --font-body: 'Nunito', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --fs-12: 0.75rem;
+  --fs-14: 0.875rem;
+  --fs-16: 1rem;
+  --fs-18: 1.125rem;
+  --fs-20: 1.25rem;
+  --fs-24: 1.5rem;
+  --fs-30: 1.875rem;
+  --fs-36: 2.25rem;
+  --fs-48: 3rem;
+  --fs-60: 3.75rem;
+  --fs-72: 4.5rem;
+
+  --lh-tight: 1.1;
+  --lh-snug: 1.25;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.65;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* -------- Spacing scale (4px base) -------- */
+  --sp-0: 0;
+  --sp-1: 0.25rem;  /* 4 */
+  --sp-2: 0.5rem;   /* 8 */
+  --sp-3: 0.75rem;  /* 12 */
+  --sp-4: 1rem;     /* 16 */
+  --sp-5: 1.5rem;   /* 24 */
+  --sp-6: 2rem;     /* 32 */
+  --sp-7: 3rem;     /* 48 */
+  --sp-8: 4rem;     /* 64 */
+  --sp-9: 6rem;     /* 96 */
+  --sp-10: 8rem;    /* 128 */
+
+  /* -------- Radii -------- */
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-lg: 18px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+  --r-blob: 42% 58% 64% 36% / 48% 38% 62% 52%;
+
+  /* -------- Shadows (soft, layered) -------- */
+  --shadow-sm: 0 1px 2px rgba(42, 53, 48, 0.08);
+  --shadow-md: 0 6px 14px -4px rgba(42, 53, 48, 0.14), 0 2px 4px rgba(42, 53, 48, 0.08);
+  --shadow-lg: 0 18px 40px -16px rgba(42, 53, 48, 0.22), 0 4px 10px rgba(42, 53, 48, 0.06);
+  --shadow-pop: 0 12px 0 -6px var(--c-sage-200), 0 18px 30px -10px rgba(42, 53, 48, 0.22);
+
+  /* -------- Motion -------- */
+  --dur-fast: 120ms;
+  --dur-base: 220ms;
+  --dur-slow: 420ms;
+  --dur-mascot: 3.2s;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* -------- Layout -------- */
+  --content-max: 1180px;
+  --content-pad: clamp(1rem, 3vw, 2.5rem);
+  --nav-h: 72px;
+
   color-scheme: light;
 }
 
+/* ============================================================
+   Reset (lean, modern)
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
 body {
   margin: 0;
-  font-family: 'Nunito', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-16);
+  line-height: var(--lh-normal);
+  color: var(--text-body);
+  background: var(--bg-page);
+  background-image:
+    radial-gradient(circle at 12% 18%, var(--c-sage-100) 0, transparent 35%),
+    radial-gradient(circle at 88% 8%, var(--c-sand-200) 0, transparent 30%),
+    radial-gradient(circle at 50% 100%, var(--c-sand-100) 0, transparent 40%);
+  background-attachment: fixed;
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--link-hover);
+}
+
+:focus-visible {
+  outline: 3px solid var(--c-pink-400);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  color: var(--text-strong);
+  line-height: var(--lh-snug);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: clamp(var(--fs-36), 5.6vw, var(--fs-60));
+  line-height: var(--lh-tight);
+}
+
+h2 {
+  font-size: clamp(var(--fs-30), 3.6vw, var(--fs-48));
+}
+
+h3 {
+  font-size: var(--fs-24);
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ============================================================
+   Utility primitives (used sparingly — most styling lives in CSS Modules)
+   ============================================================ */
+
+.ca-container {
+  max-width: var(--content-max);
+  padding-inline: var(--content-pad);
+  margin-inline: auto;
+  width: 100%;
+}
+
+.ca-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================================
+   Motion preferences
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
