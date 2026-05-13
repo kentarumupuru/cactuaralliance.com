@@ -1,47 +1,48 @@
-import styles from './App.module.css';
+import { lazy, Suspense, useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { PageShell } from './components/layout/PageShell';
+import { RouteLoading } from './components/layout/RouteLoading';
+
+const HomePage = lazy(() => import('./pages/HomePage'));
+const FindYourFCPage = lazy(() => import('./pages/FindYourFCPage'));
+const FCDirectoryPage = lazy(() => import('./pages/FCDirectoryPage'));
+const FCProfilePage = lazy(() => import('./pages/FCProfilePage'));
+const ResourcesPage = lazy(() => import('./pages/ResourcesPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 export default function App() {
-  return (
-    <main className={styles.shell}>
-      <div className="ca-container">
-        <p className={styles.kicker}>Milestone 2 · Design tokens</p>
-        <h1 className={styles.title}>
-          The Cactuar Alliance
-          <span className={styles.titleAccent}>where Free Companies grow together</span>
-        </h1>
-        <p className={styles.lede}>
-          A coalition of FCs on the Cactuar server — find your people, learn from mentors, and join
-          cross-FC events.
-        </p>
-
-        <section aria-label="Design token preview" className={styles.swatches}>
-          <Swatch label="Sage 300" varName="--c-sage-300" />
-          <Swatch label="Sage 600" varName="--c-sage-600" />
-          <Swatch label="Sand 200" varName="--c-sand-200" />
-          <Swatch label="Pink 500" varName="--c-pink-500" />
-          <Swatch label="Sky 300" varName="--c-sky-300" />
-          <Swatch label="Ink 900" varName="--c-ink-900" />
-        </section>
-
-        <div className={styles.actions}>
-          <button type="button" className={styles.cta}>
-            Find your FC
-          </button>
-          <button type="button" className={styles.ghost}>
-            Join the Discord
-          </button>
-        </div>
-      </div>
-    </main>
+  // Stable QueryClient via lazy initializer — see react-best-practices: rerender-lazy-state-init
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            staleTime: 5 * 60 * 1000, // 5min — proxy already caches, this is just SPA-level dedup
+            gcTime: 30 * 60 * 1000,
+            retry: 2,
+            refetchOnWindowFocus: false,
+          },
+        },
+      }),
   );
-}
 
-function Swatch({ label, varName }: { label: string; varName: string }) {
   return (
-    <div className={styles.swatch}>
-      <div className={styles.chip} style={{ background: `var(${varName})` }} />
-      <span>{label}</span>
-      <code>{varName}</code>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <PageShell>
+          <Suspense fallback={<RouteLoading />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/find-your-fc" element={<FindYourFCPage />} />
+              <Route path="/fcs" element={<FCDirectoryPage />} />
+              <Route path="/fcs/:lodestoneId" element={<FCProfilePage />} />
+              <Route path="/resources" element={<ResourcesPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
+        </PageShell>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }

@@ -1,0 +1,109 @@
+.mascot {
+  display: block;
+  overflow: visible;
+  filter: drop-shadow(0 8px 16px rgba(42, 53, 48, 0.18));
+}
+
+/* ============================================================
+   Idle wobble — applies to the whole body group on hover/idle
+   ============================================================ */
+
+.body {
+  transform-origin: 110px 220px;
+  transform-box: fill-box;
+}
+
+.animated .body {
+  animation: ca-mascot-idle var(--dur-mascot) var(--ease-in-out) infinite;
+}
+
+@keyframes ca-mascot-idle {
+  0%, 100% {
+    transform: rotate(-1.5deg) translateY(0);
+  }
+  50% {
+    transform: rotate(1.5deg) translateY(-3px);
+  }
+}
+
+/* ============================================================
+   Pose-specific arm motion
+   ============================================================ */
+
+.armLeft {
+  transform-origin: 39px 130px;
+  transform-box: fill-box;
+}
+
+.armRight {
+  transform-origin: 181px 130px;
+  transform-box: fill-box;
+}
+
+/* Waving — left arm tilts up and oscillates */
+.pose-wave .armLeft {
+  transform: rotate(-30deg);
+}
+
+.animated.pose-wave .armLeft {
+  animation: ca-mascot-wave 1.6s var(--ease-in-out) infinite;
+}
+
+@keyframes ca-mascot-wave {
+  0%, 100% {
+    transform: rotate(-30deg);
+  }
+  50% {
+    transform: rotate(-55deg);
+  }
+}
+
+/* Sign — right arm rotates up to hold sign post */
+.pose-sign .armRight {
+  transform: rotate(-10deg);
+}
+
+/* Think — body wobble is slower, eyes are closed (handled in TSX) */
+.animated.pose-think .body {
+  animation-duration: 5s;
+}
+
+/* ============================================================
+   Thought bubble — fades in and floats
+   ============================================================ */
+
+.thoughtBubble {
+  animation: ca-thought-float 4s var(--ease-in-out) infinite;
+  transform-origin: center;
+}
+
+@keyframes ca-thought-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* ============================================================
+   Sign — wiggle slightly on hover of parent
+   ============================================================ */
+
+.sign {
+  transform-origin: 180px 60px;
+  transform-box: fill-box;
+}
+
+.animated .sign {
+  animation: ca-mascot-sign-sway 3.2s var(--ease-in-out) infinite;
+}
+
+@keyframes ca-mascot-sign-sway {
+  0%, 100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
