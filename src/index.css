@@ -1,0 +1,11 @@
+/* Placeholder — design tokens and global styles land in Milestone 2. */
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  font-family: 'Nunito', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -11,10 +11,4 @@ export default defineConfig({
       ignored: ['**/ca-proxy/**'],
     },
   },
-  test: {
-    environment: 'jsdom',
-    globals: true,
-    setupFiles: ['./src/test/setup.ts'],
-    css: false,
-  },
 });
