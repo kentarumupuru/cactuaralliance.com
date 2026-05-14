@@ -1,0 +1,364 @@
+.flow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+  padding: var(--sp-7);
+  background: var(--surface-raised);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-soft);
+  position: relative;
+}
+
+@media (max-width: 600px) {
+  .flow {
+    padding: var(--sp-5) var(--sp-4);
+    border-radius: var(--r-lg);
+  }
+}
+
+/* ============================================================
+   Progress
+   ============================================================ */
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.progressDot {
+  flex: 1;
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--c-sand-200);
+  transition: background var(--dur-base) var(--ease-out);
+}
+
+.progressDotDone {
+  background: var(--c-sage-400);
+}
+
+.progressLabel {
+  font-family: var(--font-display);
+  font-size: var(--fs-14);
+  color: var(--c-sage-700);
+  font-weight: var(--fw-semibold);
+  margin-left: var(--sp-2);
+  white-space: nowrap;
+}
+
+/* ============================================================
+   Step header
+   ============================================================ */
+
+.stepHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.stepTitle {
+  font-size: clamp(var(--fs-24), 3.4vw, var(--fs-36));
+  line-height: var(--lh-tight);
+  color: var(--c-sage-800);
+}
+
+.stepSubtitle {
+  font-size: var(--fs-16);
+  color: var(--text-muted);
+  line-height: var(--lh-relaxed);
+  max-width: 56ch;
+}
+
+/* ============================================================
+   Step body
+   ============================================================ */
+
+.stepBody {
+  min-height: 220px;
+}
+
+/* ============================================================
+   Choice cards (playstyle, experience)
+   ============================================================ */
+
+.choices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--sp-3);
+}
+
+.choice {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-4);
+  background: var(--c-sand-50);
+  border: 2px solid var(--c-sand-200);
+  border-radius: var(--r-lg);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-bounce);
+  width: 100%;
+}
+
+.choice:hover {
+  border-color: var(--c-sage-200);
+  background: var(--c-sand-100);
+  transform: translateY(-2px);
+}
+
+.choiceOn {
+  border-color: var(--c-sage-600);
+  background: var(--c-sage-50);
+}
+
+.choiceOn:hover {
+  background: var(--c-sage-100);
+}
+
+.choiceTitle {
+  font-family: var(--font-display);
+  font-size: var(--fs-20);
+  font-weight: var(--fw-semibold);
+  color: var(--c-sage-800);
+}
+
+.choiceDesc {
+  font-size: var(--fs-14);
+  color: var(--text-body);
+  line-height: var(--lh-relaxed);
+}
+
+/* ============================================================
+   Activity multi-select grid
+   ============================================================ */
+
+.activityGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--sp-2);
+}
+
+.activity {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--c-sand-50);
+  border: 1.5px solid var(--c-sand-200);
+  border-radius: var(--r-md);
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+}
+
+.activity:hover {
+  border-color: var(--c-sage-200);
+  background: var(--c-sand-100);
+}
+
+.activityOn {
+  border-color: var(--c-sage-600);
+  background: var(--c-sage-50);
+}
+
+.activityCheck {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1.5px solid var(--c-sage-300);
+  background: var(--surface-raised);
+  font-weight: var(--fw-bold);
+  color: var(--c-sage-700);
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+.activityOn .activityCheck {
+  background: var(--c-sage-600);
+  border-color: var(--c-sage-700);
+  color: var(--text-on-action);
+}
+
+.activityLabel {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  color: var(--text-strong);
+}
+
+.activityHint {
+  display: block;
+  font-size: var(--fs-12);
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ============================================================
+   Schedule step
+   ============================================================ */
+
+.scheduleStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+.subFieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.subFieldset legend {
+  font-family: var(--font-display);
+  font-size: var(--fs-16);
+  font-weight: var(--fw-semibold);
+  color: var(--c-sage-700);
+  margin-bottom: var(--sp-2);
+}
+
+.subHint {
+  font-size: var(--fs-14);
+  color: var(--text-muted);
+  margin-bottom: var(--sp-2);
+}
+
+.tzGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.tzChip {
+  font-family: var(--font-body);
+  font-size: var(--fs-16);
+  font-weight: var(--fw-medium);
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--c-sand-100);
+  border: 1.5px solid var(--c-sand-200);
+  color: var(--c-sage-700);
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.tzChip:hover {
+  border-color: var(--c-sage-300);
+  background: var(--c-sand-200);
+}
+
+.tzChipOn {
+  background: var(--c-sage-600);
+  border-color: var(--c-sage-700);
+  color: var(--text-on-action);
+}
+
+.tzChipOn:hover {
+  background: var(--c-sage-700);
+  color: var(--text-on-action);
+}
+
+.toggleRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+}
+
+.toggleLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--c-sand-50);
+  border: 1.5px solid var(--c-sand-200);
+  border-radius: var(--r-pill);
+  font-weight: var(--fw-medium);
+  color: var(--c-sage-700);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.toggleLabel:hover {
+  background: var(--c-sand-100);
+}
+
+.toggleLabel input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--c-pink-500);
+  cursor: pointer;
+}
+
+/* ============================================================
+   Nav buttons
+   ============================================================ */
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding-top: var(--sp-3);
+  border-top: 1px dashed var(--border-soft);
+}
+
+.backBtn,
+.nextBtn {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-16);
+  padding: var(--sp-3) var(--sp-5);
+  border-radius: var(--r-pill);
+  transition:
+    transform var(--dur-fast) var(--ease-bounce),
+    background var(--dur-fast) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-out);
+}
+
+.backBtn {
+  background: transparent;
+  color: var(--c-sage-700);
+}
+
+.backBtn:hover:not(:disabled) {
+  background: var(--c-sage-100);
+}
+
+.backBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.nextBtn {
+  background: var(--action);
+  color: var(--text-on-action);
+  box-shadow: var(--shadow-pop);
+}
+
+.nextBtn:hover:not(:disabled),
+.nextBtn:focus-visible:not(:disabled) {
+  background: var(--action-hover);
+  transform: translateY(-2px);
+}
+
+.nextBtn:disabled {
+  background: var(--c-ink-300);
+  box-shadow: none;
+  cursor: not-allowed;
+}
