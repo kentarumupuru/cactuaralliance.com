@@ -1,68 +1,89 @@
+import { useMemo, useState } from 'react';
 import { PageHero } from '../components/layout/PageHero';
+import { FCCard } from '../components/fc/FCCard';
+import { FCFilters } from '../components/fc/FCFilters';
+import { Mascot } from '../components/mascot/Mascot';
 import { useFCs } from '../api/ca';
+import { applyFCFilters, EMPTY_FILTERS, type FCFilters as FCFiltersType } from '../fc/filters';
+import styles from './FCDirectoryPage.module.css';
 
 export default function FCDirectoryPage() {
   const { data, isPending, isError, error } = useFCs();
+  const [filters, setFilters] = useState<FCFiltersType>({
+    ...EMPTY_FILTERS,
+    sortByFeatured: true,
+  });
+
+  // react-best-practices: rerender-memo — keep filtered list memoized
+  const filtered = useMemo(
+    () => (data ? applyFCFilters(data.fcs, filters) : []),
+    [data, filters],
+  );
 
   return (
     <>
       <PageHero
         eyebrow="Member Free Companies"
         title="FC Directory"
-        lede="Every FC in the alliance, with live stats from the Lodestone. Filter by what you're looking for."
+        lede="Every FC in the alliance with live crest, member count, and recruiting status pulled fresh from the Lodestone."
         mascotPose="sign"
         mascotSignText="Meet the FCs"
       />
-      <section className="ca-container" style={{ paddingBlock: 'var(--sp-6) var(--sp-9)' }}>
-        {isPending && (
-          <p style={{ color: 'var(--text-muted)' }}>Loading FCs from the proxy…</p>
-        )}
+
+      <section className={`ca-container ${styles.section}`}>
+        {isPending && <DirectorySkeleton />}
+
         {isError && (
-          <p style={{ color: 'var(--c-pink-700)' }}>
-            Could not load FCs from the proxy: {error.message}.{' '}
-            <em>Is wrangler dev running on :8787?</em>
-          </p>
+          <div className={styles.errorBox} role="alert">
+            <h2>The directory's down a Cactuar hole.</h2>
+            <p>
+              Could not reach the proxy: <code>{error.message}</code>
+            </p>
+            <p className={styles.errorHint}>
+              If you're running this locally, start the worker with
+              <code> cd ca-proxy &amp;&amp; npm run dev</code>.
+            </p>
+          </div>
         )}
+
         {data && (
           <>
-            <p style={{ marginBottom: 'var(--sp-4)', color: 'var(--text-muted)' }}>
-              {data.fcs.length} FC{data.fcs.length === 1 ? '' : 's'} · fetched at{' '}
-              {new Date(data.fetchedAt).toLocaleTimeString()}
-            </p>
-            <ul
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-                gap: 'var(--sp-4)',
-              }}
-            >
-              {data.fcs.map((fc) => (
-                <li
-                  key={fc.lodestoneId}
-                  style={{
-                    background: 'var(--surface-raised)',
-                    border: '1px solid var(--border-soft)',
-                    borderRadius: 'var(--r-md)',
-                    padding: 'var(--sp-4)',
-                    boxShadow: 'var(--shadow-sm)',
-                  }}
-                >
-                  <h3 style={{ color: 'var(--c-sage-700)' }}>
-                    {fc.name}{' '}
-                    <small style={{ color: 'var(--c-pink-500)', fontSize: '0.75em' }}>
-                      [{fc.tag}]
-                    </small>
-                  </h3>
-                  <p style={{ marginTop: 'var(--sp-2)', fontSize: 'var(--fs-14)' }}>{fc.blurb}</p>
-                </li>
-              ))}
-            </ul>
+            <FCFilters
+              filters={filters}
+              onChange={setFilters}
+              totalCount={data.fcs.length}
+              filteredCount={filtered.length}
+            />
+
+            {filtered.length > 0 ? (
+              <ul className={styles.grid}>
+                {filtered.map((fc) => (
+                  <li key={fc.lodestoneId} className={styles.gridItem}>
+                    <FCCard fc={fc} />
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className={styles.emptyState}>
+                <Mascot pose="sign" signText="No matches" size={180} />
+                <h2>No FCs match these filters.</h2>
+                <p>Try clearing a filter or two.</p>
+              </div>
+            )}
           </>
         )}
-        <p style={{ fontStyle: 'italic', color: 'var(--text-muted)', marginTop: 'var(--sp-6)' }}>
-          The full directory with filters lands in Milestone 7.
-        </p>
       </section>
     </>
+  );
+}
+
+function DirectorySkeleton() {
+  return (
+    <div className={styles.skeleton} aria-hidden="true">
+      <span className="ca-sr-only">Loading FC directory…</span>
+      {Array.from({ length: 4 }).map((_, i) => (
+        <div key={i} className={styles.skeletonCard} />
+      ))}
+    </div>
   );
 }
