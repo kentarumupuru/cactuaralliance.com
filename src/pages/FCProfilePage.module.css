@@ -1,0 +1,131 @@
+.section {
+  padding-block: var(--sp-7) var(--sp-9);
+}
+
+/* ============================================================
+   Not-found
+   ============================================================ */
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+  padding: var(--sp-8) var(--sp-4);
+  background: var(--surface-raised);
+  border-radius: var(--r-xl);
+  border: 1px dashed var(--border-strong);
+  text-align: center;
+}
+
+.notFound h1 {
+  font-size: clamp(var(--fs-24), 3vw, var(--fs-36));
+  color: var(--c-sage-800);
+  margin: 0;
+}
+
+.notFound p {
+  max-width: 48ch;
+  color: var(--text-body);
+  line-height: var(--lh-relaxed);
+}
+
+.notFound code {
+  background: var(--c-sand-200);
+  padding: 2px 6px;
+  border-radius: var(--r-sm);
+  font-family: ui-monospace, monospace;
+  font-size: 0.9em;
+}
+
+.cta {
+  margin-top: var(--sp-3);
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-18);
+  padding: var(--sp-3) var(--sp-5);
+  background: var(--action);
+  color: var(--text-on-action);
+  text-decoration: none;
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-pop);
+  transition: transform var(--dur-fast) var(--ease-bounce);
+}
+
+.cta:hover,
+.cta:focus-visible {
+  background: var(--action-hover);
+  color: var(--text-on-action);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   Roster error
+   ============================================================ */
+
+.errorBox {
+  background: rgba(217, 116, 143, 0.08);
+  border: 2px solid var(--c-pink-300);
+  border-radius: var(--r-lg);
+  padding: var(--sp-5);
+  color: var(--c-pink-700);
+}
+
+.errorBox h1 {
+  font-size: var(--fs-24);
+  margin-bottom: var(--sp-2);
+}
+
+.errorBox code {
+  background: rgba(255, 255, 255, 0.6);
+  padding: 2px 6px;
+  border-radius: var(--r-sm);
+}
+
+.backInline {
+  display: inline-block;
+  margin-top: var(--sp-3);
+  color: var(--c-pink-700);
+  font-weight: var(--fw-medium);
+}
+
+/* ============================================================
+   Skeleton
+   ============================================================ */
+
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+.skeletonHero {
+  height: 240px;
+  border-radius: var(--r-xl);
+}
+
+.skeletonBody {
+  height: 96px;
+  border-radius: var(--r-lg);
+}
+
+.skeletonHero,
+.skeletonBody {
+  background: linear-gradient(
+    90deg,
+    var(--c-sand-100) 0%,
+    var(--c-sand-200) 50%,
+    var(--c-sand-100) 100%
+  );
+  background-size: 200% 100%;
+  animation: ca-skeleton-shimmer 1.4s var(--ease-in-out) infinite;
+}
+
+@keyframes ca-skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
