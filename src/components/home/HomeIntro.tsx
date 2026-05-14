@@ -37,12 +37,6 @@ export function HomeIntro() {
               <span aria-hidden="true">↗</span>
             </a>
           </div>
-
-          <ul className={styles.stats}>
-            <Stat label="Member FCs" value="20+" />
-            <Stat label="Active Discord channels" value="40+" />
-            <Stat label="Years coordinating" value="9" />
-          </ul>
         </div>
 
         <div className={styles.mascotWrap} aria-hidden="true">
@@ -50,14 +44,5 @@ export function HomeIntro() {
         </div>
       </div>
     </section>
-  );
-}
-
-function Stat({ label, value }: { label: string; value: string }) {
-  return (
-    <li className={styles.stat}>
-      <span className={styles.statValue}>{value}</span>
-      <span className={styles.statLabel}>{label}</span>
-    </li>
   );
 }

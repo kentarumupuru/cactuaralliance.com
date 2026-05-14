@@ -13,136 +13,97 @@ export interface ResourceSection {
 
 export const RESOURCE_SECTIONS: ReadonlyArray<ResourceSection> = [
   {
-    id: 'sprouts',
-    title: 'New to FFXIV?',
-    blurb:
-      'Start here. These cover the basics — what jobs do, how the MSQ works, and what to do at level cap.',
+    id: 'new-players',
+    title: 'New players',
+    blurb: 'Starting points for players new to FFXIV.',
     links: [
       {
-        title: 'New Player Hub (Lodestone)',
+        title: 'New to FFXIV',
         url: 'https://na.finalfantasyxiv.com/new_to_ffxiv/',
-        description: 'Square Enix’s official starter guide — free trial info, jobs, basic systems.',
-      },
-      {
-        title: 'A Sprout’s Survival Guide',
-        url: 'https://gamerescape.com/wiki/Stormblood_Guide_for_New_Players',
-        description: 'Gamer Escape’s onboarding wiki — comprehensive walkthrough.',
-      },
-      {
-        title: 'Bunny’s Roadmap to 90+',
-        url: 'https://www.akhmorning.com/',
-        description: 'Akh Morning — community-maintained leveling and gearing reference.',
+        description: "Square Enix's official starter page.",
       },
     ],
   },
   {
     id: 'jobs',
-    title: 'Jobs & rotations',
-    blurb: 'How to play your job at level cap — opener guides, cheat sheets, and theorycraft.',
+    title: 'Job guides',
+    blurb: 'Rotation references and theorycraft.',
     links: [
       {
-        title: 'The Balance — Job guides',
+        title: 'The Balance',
         url: 'https://thebalanceffxiv.com/',
-        description: 'The community standard. Every job, every tier, every prog level.',
+        description: 'Community-maintained job guides.',
       },
       {
-        title: 'Icy Veins FFXIV',
+        title: 'Icy Veins — FFXIV',
         url: 'https://www.icy-veins.com/ffxiv/',
-        description: 'Approachable rotation breakdowns and gearing for casual-to-mid raiders.',
+        description: 'Rotation and gearing guides.',
       },
       {
         title: 'XIVAnalysis',
         url: 'https://xivanalysis.com/',
-        description: 'Paste an FFLogs report — get an automated rotation autopsy.',
+        description: 'Automated rotation analysis from FFLogs reports.',
       },
     ],
   },
   {
     id: 'raid',
-    title: 'Raid prog & logs',
-    blurb: 'Tools for prog groups, statics, and anyone trying to clear current content.',
+    title: 'Raiding & logs',
+    blurb: 'Combat logs and performance tracking.',
     links: [
       {
         title: 'FFLogs',
         url: 'https://www.fflogs.com/',
-        description: 'Combat logging and rankings. The raid community’s scoreboard.',
-      },
-      {
-        title: 'Hector Hectorson’s Toolbox',
-        url: 'https://ff14.toolboxgaming.space/',
-        description: 'Visual planning tool for raid markers and mechanics walkthroughs.',
-      },
-      {
-        title: 'Heavenswhere',
-        url: 'https://heavenswhere.com/',
-        description: 'Fight planner with timeline view — great for callouts and reviews.',
+        description: 'Combat logging and rankings.',
       },
     ],
   },
   {
-    id: 'craft-gather',
-    title: 'Crafting & gathering',
-    blurb: 'For the DoH/DoL crowd — collectables, melds, and macros.',
+    id: 'tools',
+    title: 'Crafting, gathering & markets',
+    blurb: 'Reference tools for DoH, DoL, and the market board.',
     links: [
       {
         title: 'Teamcraft',
         url: 'https://ffxivteamcraft.com/',
-        description: 'The crafter’s Swiss army knife — rotations, gear, supply schedules.',
+        description: 'Crafting rotations, gear sets, and supply schedules.',
       },
       {
         title: 'Garland Tools',
         url: 'https://garlandtools.org/',
-        description: 'Item database with node maps for every gatherable in the game.',
+        description: 'Item database with gathering node maps.',
       },
       {
         title: 'Universalis',
         url: 'https://universalis.app/',
-        description: 'Cross-world market board prices and history.',
+        description: 'Cross-world market board prices.',
       },
-    ],
-  },
-  {
-    id: 'glam-rp',
-    title: 'Glam, housing, RP',
-    blurb: 'For the visual-novelist branch of the FFXIV community.',
-    links: [
       {
         title: 'Eorzea Collection',
         url: 'https://ffxiv.eorzeacollection.com/',
-        description: 'Browse glam ideas tagged by item, job, and aesthetic.',
-      },
-      {
-        title: 'FFXIV Housing',
-        url: 'https://ffxiv-housing.com/',
-        description: 'Inspiration gallery for FC mansions, personal rooms, and apartments.',
-      },
-      {
-        title: 'Gposers Discord',
-        url: 'https://discord.com/invite/gposers',
-        description: 'Cross-server gpose and screenshot community.',
+        description: 'Glamour reference and outfit gallery.',
       },
     ],
   },
   {
     id: 'alliance',
     title: 'Inside the alliance',
-    blurb:
-      'Mentorship is run inside the Discord — drop a message in #mentorship and an existing member will help you find a match.',
+    blurb: 'Links into the Cactuar Alliance itself.',
     links: [
       {
-        title: 'The Cactuar Alliance Discord',
+        title: 'Cactuar Alliance Discord',
         url: 'https://discord.gg/cactuar-alliance',
-        description: 'Cross-FC chat, event coordination, mentorship signups.',
+        description: 'Cross-FC chat and event coordination.',
       },
       {
         title: 'FC Directory',
         url: '/fcs',
-        description: 'Every member FC with live Lodestone data and recruiting status.',
+        description: 'Member FCs with live Lodestone stats.',
       },
       {
         title: 'Find your FC',
         url: '/find-your-fc',
-        description: 'Four-question matching quiz to surface FCs that fit you.',
+        description: 'Matching quiz that ranks FCs by fit.',
       },
     ],
   },
