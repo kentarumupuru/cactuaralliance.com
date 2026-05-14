@@ -1,55 +1,38 @@
 import { Link } from 'react-router-dom';
-import { PageHero } from '../components/layout/PageHero';
+import { Mascot } from '../components/mascot/Mascot';
+import styles from './NotFoundPage.module.css';
 
 export default function NotFoundPage() {
   return (
-    <>
-      <PageHero
-        eyebrow="404"
-        title="This page wandered off"
-        lede="Sabotender hasn't seen it. Try heading back to the home page or browsing the FC directory."
-        mascotPose="sign"
-        mascotSignText="LOST"
-      />
-      <section
-        className="ca-container"
-        style={{
-          paddingBlock: 'var(--sp-5) var(--sp-9)',
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: 'var(--sp-3)',
-        }}
-      >
-        <Link
-          to="/"
-          style={{
-            padding: '0.75rem 1.4rem',
-            background: 'var(--action)',
-            color: '#fff',
-            textDecoration: 'none',
-            borderRadius: 'var(--r-pill)',
-            fontFamily: 'var(--font-display)',
-            fontWeight: 600,
-          }}
-        >
-          Take me home
-        </Link>
-        <Link
-          to="/fcs"
-          style={{
-            padding: '0.75rem 1.4rem',
-            background: 'var(--surface-raised)',
-            color: 'var(--c-sage-700)',
-            border: '2px solid var(--c-sage-200)',
-            textDecoration: 'none',
-            borderRadius: 'var(--r-pill)',
-            fontFamily: 'var(--font-display)',
-            fontWeight: 600,
-          }}
-        >
-          Browse FCs
-        </Link>
-      </section>
-    </>
+    <section className={`ca-container ${styles.section}`}>
+      <div className={styles.card}>
+        <div className={styles.mascot} aria-hidden="true">
+          <Mascot pose="sign" signText="LOST" size={240} />
+        </div>
+
+        <div className={styles.copy}>
+          <p className={styles.code}>404</p>
+          <h1 className={styles.title}>
+            This page wandered off into the <span className={styles.titleAccent}>Sagolii Desert</span>.
+          </h1>
+          <p className={styles.body}>
+            Sabotender hasn't seen it. The link might be old, or we may have moved things around.
+            Try one of these instead:
+          </p>
+
+          <div className={styles.actions}>
+            <Link to="/" className={styles.primary}>
+              Take me home
+            </Link>
+            <Link to="/fcs" className={styles.secondary}>
+              Browse FCs
+            </Link>
+            <Link to="/find-your-fc" className={styles.secondary}>
+              Find your FC
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

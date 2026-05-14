@@ -1,0 +1,289 @@
+.section {
+  padding-block: var(--sp-5) var(--sp-9);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+}
+
+/* ============================================================
+   Table of contents
+   ============================================================ */
+
+.tableOfContents {
+  position: sticky;
+  top: calc(var(--nav-h) + var(--sp-2));
+  background: var(--surface-raised);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg);
+  padding: var(--sp-3) var(--sp-4);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  z-index: 5;
+}
+
+.tocLabel {
+  font-family: var(--font-display);
+  font-size: var(--fs-12);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-sage-600);
+}
+
+.tocList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+}
+
+.tocLink {
+  font-family: var(--font-display);
+  font-size: var(--fs-14);
+  font-weight: var(--fw-medium);
+  color: var(--c-sage-700);
+  text-decoration: none;
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: var(--r-pill);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.tocLink:hover,
+.tocLink:focus-visible {
+  background: var(--c-sage-100);
+  color: var(--c-sage-700);
+}
+
+/* ============================================================
+   Section block
+   ============================================================ */
+
+.sectionBlock {
+  scroll-margin-top: calc(var(--nav-h) + 80px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding-top: var(--sp-3);
+}
+
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  padding-bottom: var(--sp-3);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.sectionTitle {
+  font-size: clamp(var(--fs-24), 3vw, var(--fs-36));
+  color: var(--c-sage-800);
+}
+
+.sectionBlurb {
+  font-size: var(--fs-16);
+  color: var(--text-body);
+  max-width: 60ch;
+  line-height: var(--lh-relaxed);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--sp-3);
+}
+
+/* ============================================================
+   Resource cards
+   ============================================================ */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-4);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-md);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--c-sage-300);
+  box-shadow: var(--shadow-md);
+  color: inherit;
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  font-family: var(--font-display);
+  font-size: var(--fs-18);
+  font-weight: var(--fw-semibold);
+  color: var(--c-sage-800);
+  margin: 0;
+}
+
+.cardArrow {
+  color: var(--c-pink-500);
+  transition: transform var(--dur-fast) var(--ease-bounce);
+  flex-shrink: 0;
+}
+
+.card:hover .cardArrow {
+  transform: translateX(3px) translateY(-1px);
+}
+
+.cardDesc {
+  font-size: var(--fs-14);
+  color: var(--text-body);
+  line-height: var(--lh-relaxed);
+}
+
+/* ============================================================
+   Mentorship callout
+   ============================================================ */
+
+.mentorshipCallout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--sp-5);
+  align-items: center;
+  padding: var(--sp-6);
+  background: linear-gradient(135deg, var(--c-sage-100), var(--c-sand-200));
+  border-radius: var(--r-xl);
+  border: 1px solid var(--c-sage-200);
+  margin-top: var(--sp-5);
+  position: relative;
+  overflow: hidden;
+}
+
+.mentorshipCallout::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 80% 30%, rgba(217, 116, 143, 0.15) 0, transparent 35%),
+    radial-gradient(circle at 20% 80%, rgba(143, 185, 150, 0.2) 0, transparent 30%);
+  pointer-events: none;
+}
+
+.mentorshipCallout > * {
+  position: relative;
+}
+
+@media (max-width: 720px) {
+  .mentorshipCallout {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+.calloutMascot {
+  display: grid;
+  place-items: center;
+}
+
+@media (max-width: 720px) {
+  .calloutMascot {
+    margin: 0 auto;
+  }
+}
+
+.calloutCopy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.calloutKicker {
+  font-family: var(--font-display);
+  font-size: var(--fs-14);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-pink-600);
+}
+
+.calloutTitle {
+  font-size: clamp(var(--fs-24), 3vw, var(--fs-36));
+  color: var(--c-sage-800);
+  line-height: var(--lh-tight);
+}
+
+.calloutBody {
+  font-size: var(--fs-16);
+  color: var(--text-body);
+  line-height: var(--lh-relaxed);
+  max-width: 56ch;
+}
+
+.calloutBody code {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 1px 6px;
+  border-radius: var(--r-sm);
+  font-family: ui-monospace, monospace;
+  font-size: 0.9em;
+  color: var(--c-sage-700);
+}
+
+.calloutActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-2);
+}
+
+@media (max-width: 720px) {
+  .calloutActions {
+    justify-content: center;
+  }
+}
+
+.calloutPrimary,
+.calloutGhost {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-16);
+  padding: var(--sp-3) var(--sp-5);
+  border-radius: var(--r-pill);
+  text-decoration: none;
+  transition:
+    transform var(--dur-fast) var(--ease-bounce),
+    background var(--dur-fast) var(--ease-out);
+}
+
+.calloutPrimary {
+  background: var(--action);
+  color: var(--text-on-action);
+  box-shadow: var(--shadow-pop);
+}
+
+.calloutPrimary:hover,
+.calloutPrimary:focus-visible {
+  background: var(--action-hover);
+  color: var(--text-on-action);
+  transform: translateY(-2px);
+}
+
+.calloutGhost {
+  background: var(--surface-raised);
+  color: var(--c-sage-700);
+  border: 2px solid var(--c-sage-300);
+}
+
+.calloutGhost:hover,
+.calloutGhost:focus-visible {
+  background: var(--c-sage-50);
+  border-color: var(--c-sage-400);
+  color: var(--c-sage-700);
+  transform: translateY(-2px);
+}

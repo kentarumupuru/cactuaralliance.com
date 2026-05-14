@@ -1,0 +1,97 @@
+.section {
+  padding-block: var(--sp-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+}
+
+.header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.kicker {
+  font-family: var(--font-display);
+  font-size: var(--fs-14);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-pink-600);
+}
+
+.title {
+  font-size: clamp(var(--fs-24), 3.4vw, var(--fs-36));
+  color: var(--c-sage-800);
+  line-height: var(--lh-tight);
+  max-width: 22ch;
+  margin: 0 auto;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--sp-4);
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-5);
+  background: var(--surface-raised);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+
+.step:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.stepNum {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-48);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--c-sage-300);
+  letter-spacing: -0.02em;
+}
+
+.stepTitle {
+  font-size: var(--fs-20);
+  color: var(--c-sage-800);
+  margin: 0;
+}
+
+.stepBody {
+  font-size: var(--fs-14);
+  color: var(--text-body);
+  line-height: var(--lh-relaxed);
+}
+
+.stepCta {
+  margin-top: auto;
+  align-self: flex-start;
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-14);
+  color: var(--c-pink-600);
+  text-decoration: none;
+  padding: var(--sp-1) var(--sp-3);
+  margin-left: calc(var(--sp-3) * -1);
+  border-radius: var(--r-pill);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.stepCta:hover,
+.stepCta:focus-visible {
+  background: rgba(217, 116, 143, 0.1);
+  color: var(--c-pink-700);
+}
