@@ -29,7 +29,7 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <BrowserRouter basename="/cactuaralliance.com">
         <PageShell>
           <Suspense fallback={<RouteLoading />}>
             <Routes>
